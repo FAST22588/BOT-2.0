@@ -1,27 +1,28 @@
+import os
 import discord
 from discord.ext import commands
-
-intents = discord.Intents.default()
-intents.message_content = True
-intents.members = True
-
+from discord import app_commands
 from myserver import server_on
 
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"Logged in as {bot.user}")
+    print("Bot Online!")
     try:
         synced = await bot.tree.sync()
         print(f"Synced {len(synced)} commands")
     except Exception as e:
         print(f"Error syncing commands: {e}")
 
-async def main():
-    await bot.load_extension("money")
-   # await bot.load_extension("shop")  # ถ้ายังไม่มี shop.py ก็แค่คอมเมนต์บรรทัดนี้ไว้ก่อน
-    await bot.start('TOKEN')
+# ตัวอย่าง Slash Command
+@bot.tree.command(name='ping', description='เช็คว่าบอทออนไลน์ไหม')
+async def ping(interaction: discord.Interaction):
+    await interaction.response.send_message("pong!")
 
-import asyncio
-asyncio.run(main())
+# Keep alive สำหรับ Render
+server_on()
+
+# ใช้ TOKEN จาก environment variable
+bot.run(os.getenv("TOKEN"))
