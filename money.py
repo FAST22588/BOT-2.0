@@ -7,15 +7,11 @@ from datetime import datetime, timedelta
 
 MONEY_FILE = 'money_data.json'
 
-# ห้องที่อนุญาตให้ใช้คำสั่ง
-COMMAND_CHANNEL_ID = 1362327132663189525  # ห้องที่ 4 ใช้คำสั่ง
+COMMAND_CHANNEL_ID = 1362327132663189525
+RESULT_CHANNEL_MONEY = 1362684552879014000
+RESULT_CHANNEL_DAILY = 1362684614875021423
+RESULT_CHANNEL_PAY   = 1362684496767352933
 
-# ห้องที่แสดงผลลัพธ์
-RESULT_CHANNEL_MONEY = 1362684552879014000  # ห้องที่ 1 แสดงยอดเงิน
-RESULT_CHANNEL_DAILY = 1362684614875021423  # ห้องที่ 2 แสดงรับรายวัน
-RESULT_CHANNEL_PAY   = 1362684496767352933  # ห้องที่ 3 แสดงโอนเงิน
-
-# โหลดหรือสร้างไฟล์เก็บเงิน
 if os.path.exists(MONEY_FILE):
     with open(MONEY_FILE, 'r') as f:
         money_data = json.load(f)
@@ -42,7 +38,6 @@ class Money(commands.Cog):
 
         user_data = get_user_data(str(interaction.user.id))
         result_channel = self.bot.get_channel(RESULT_CHANNEL_MONEY)
-
         await result_channel.send(f'{interaction.user.mention} มีเงิน {user_data["balance"]} บาท')
         await interaction.response.send_message(f'คุณมีเงิน {user_data["balance"]} บาท', ephemeral=True)
 
@@ -99,4 +94,9 @@ class Money(commands.Cog):
         await interaction.response.send_message(f'โอนเงินให้ {member.mention} จำนวน {amount} บาทแล้ว', ephemeral=True)
 
 async def setup(bot):
-    await bot.add_cog(Money(bot))
+    cog = Money(bot)
+    await bot.add_cog(cog)
+    # ลงทะเบียน Slash Commands
+    bot.tree.add_command(cog.money_slash)
+    bot.tree.add_command(cog.daily_slash)
+    bot.tree.add_command(cog.pay_slash)
