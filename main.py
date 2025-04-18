@@ -9,17 +9,17 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    print("Bot Online!")
+    print(f"Logged in as {bot.user}")
     try:
         synced = await bot.tree.sync()
         print(f"Synced {len(synced)} commands")
     except Exception as e:
         print(f"Error syncing commands: {e}")
 
-# ตัวอย่าง Slash Command
-@bot.tree.command(name='ping', description='เช็คว่าบอทออนไลน์ไหม')
-async def ping(interaction: discord.Interaction):
-    await interaction.response.send_message("pong!")
+async def main():
+    await bot.load_extension("money")
+   # await bot.load_extension("shop")  # ถ้ายังไม่มี shop.py ก็แค่คอมเมนต์บรรทัดนี้ไว้ก่อน
+    await bot.start(TOKEN)
 
 # Keep alive สำหรับ Render
 server_on()
