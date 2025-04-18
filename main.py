@@ -18,8 +18,6 @@ async def on_ready():
 
 async def main():
     await bot.load_extension("money")
-   # await bot.load_extension("shop")  # ถ้ายังไม่มี shop.py ก็แค่คอมเมนต์บรรทัดนี้ไว้ก่อน
-    await bot.start(TOKEN)
 
 # Keep alive สำหรับ Render
 server_on()
