@@ -5,6 +5,8 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
+from myserver import server_on
+
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
