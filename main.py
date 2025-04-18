@@ -1,4 +1,5 @@
 import os
+import asyncio
 import discord
 from discord.ext import commands
 from discord import app_commands
@@ -18,9 +19,8 @@ async def on_ready():
 
 async def main():
     await bot.load_extension("money")
+    server_on()  # เรียกไว้ที่นี่ก็ได้
+    await bot.start(os.getenv("TOKEN"))
 
-# Keep alive สำหรับ Render
-server_on()
-
-# ใช้ TOKEN จาก environment variable
-bot.run(os.getenv("TOKEN"))
+# เรียกใช้ main
+asyncio.run(main())
