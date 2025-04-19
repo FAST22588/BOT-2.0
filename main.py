@@ -21,6 +21,7 @@ async def main():
     await bot.load_extension("money")
     await bot.load_extension("admin_money")
     await bot.load_extension("check_balance")
+    await bot.load_extension("auto_delete")
     server_on()
     await bot.start(os.getenv("TOKEN"))
 
