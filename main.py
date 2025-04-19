@@ -19,7 +19,7 @@ async def on_ready():
 
 async def main():
     await bot.load_extension("money")
-    server_on()  # เรียกไว้ที่นี่ก็ได้
+    await bot.load_extension("admin_money")
     await bot.start(os.getenv("TOKEN"))
 
 # เรียกใช้ main
