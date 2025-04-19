@@ -46,7 +46,7 @@ class CheckBalance(commands.Cog):
 
         result = "**อันดับ 10 สมาชิกที่มีเงินเยอะที่สุด:**\n"
         for i, (name, balance) in enumerate(top10, start=1):
-            result += f"#{i}. {name} - {balance} บาท\n"
+            result += f"#{i}. @{name} - {balance} บาท\n"
 
         await interaction.response.send_message(result, ephemeral=True)
 
