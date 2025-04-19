@@ -15,7 +15,7 @@ class AdminMoney(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="us", description="เพิ่มเงินให้ผู้ใช้ (mention)")
+    @app_commands.command(name="us", description="เพิ่มเงินให้ผู้ใช้ (Admin เท่านั้นน!)")
     @app_commands.describe(member="ผู้ใช้ที่ต้องการเพิ่มเงิน", amount="จำนวนเงินที่ต้องการเพิ่ม")
     async def us_command(self, interaction: discord.Interaction, member: discord.Member, amount: int):
         if interaction.channel.id != COMMAND_CHANNEL_ID:
