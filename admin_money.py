@@ -33,7 +33,7 @@ class AdminMoney(commands.Cog):
             await alert_channel.send(embed=embed)
 
         await interaction.response.send_message(
-            f"เพิ่มเงิน {amount} ให้ {member.mention} เรียบร้อยแล้ว", ephemeral=True
+            f"เพิ่มเงินจำนวน {amount} บาทให้ {member.mention} เรียบร้อยแล้ว!!!", ephemeral=True
         )
 
     @app_commands.command(name="delete", description="ลบเงินของผู้ใช้ (mention)")
