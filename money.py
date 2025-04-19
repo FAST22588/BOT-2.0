@@ -39,6 +39,14 @@ class Money(commands.Cog):
         await result_channel.send(f'{interaction.user.mention} มีเงิน {user_data["balance"]} บาท')
         await interaction.response.send_message(f'คุณมีเงิน {user_data["balance"]} บาท', ephemeral=True)
 
+                # DM ไปยังผู้รับเงิน
+        try:
+            await member.send(
+                f"คุณได้รับเงินจำนวน {amount} บาทจาก <@{interaction.user.id}>"
+            )
+        except discord.Forbidden:
+            pass  # ผู้รับปิด DM กับบอท
+
     @app_commands.command(name="daily", description="รับเงินรายวัน (100000 เหรียญ)")
     async def daily_slash(self, interaction: discord.Interaction):
         if interaction.channel.id != COMMAND_CHANNEL_ID:
