@@ -24,7 +24,7 @@ class CheckBalance(commands.Cog):
             f'{member.mention} มีเงินคงเหลืออยู่ {balance} บาท', ephemeral=True
         )
 
-    # /check_all
+       # /check_all
     @app_commands.command(name="check_all", description="แสดงสมาชิกที่มีเงินเยอะที่สุด 10 คน")
     async def check_all_command(self, interaction: discord.Interaction):
         if interaction.channel.id != CHECK_ALL_CHANNEL_ID:
@@ -37,7 +37,7 @@ class CheckBalance(commands.Cog):
             if member.bot:
                 continue
             data = get_user_data(str(member.id))
-            leaderboard.append((member.display_name, data["balance"]))
+            leaderboard.append((member.mention, data["balance"]))  # ใช้ mention แทน display_name
 
         top10 = sorted(leaderboard, key=lambda x: x[1], reverse=True)[:10]
 
@@ -45,10 +45,11 @@ class CheckBalance(commands.Cog):
             return await interaction.response.send_message("ไม่มีข้อมูลสมาชิก", ephemeral=True)
 
         result = "**อันดับ 10 สมาชิกที่มีเงินเยอะที่สุด:**\n"
-        for i, (name, balance) in enumerate(top10, start=1):
-            result += f"#{i}. @{name} - {balance} บาท\n"
+        for i, (mention, balance) in enumerate(top10, start=1):
+            result += f"#{i}. {mention} - {balance} บาท\n"
 
         await interaction.response.send_message(result, ephemeral=True)
+
 
 async def setup(bot):
     await bot.add_cog(CheckBalance(bot))
