@@ -1,4 +1,4 @@
-BOT Discord 2.0
+Code BOT Discord 2.0
 
 main.py  #ตัวรันบอทหลัก                  
 money.py  #ระบบเช็คเงิน                  
