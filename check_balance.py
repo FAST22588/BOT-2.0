@@ -11,7 +11,7 @@ class CheckBalance(commands.Cog):
         self.bot = bot
 
     # /check @user
-    @app_commands.command(name="check", description="ตรวจสอบยอดเงินของผู้ใช้ (Admin เท่านั้นน!)")
+    @app_commands.command(name="check", description="ตรวจสอบยอดเงินของผู้ใช้ในเซิฟเวอร์ (Admin เท่านั้นน!)")
     @app_commands.describe(member="ผู้ใช้ที่ต้องการตรวจสอบยอดเงิน")
     async def check_command(self, interaction: discord.Interaction, member: discord.Member):
         if interaction.channel.id != COMMAND_CHANNEL_ID:
