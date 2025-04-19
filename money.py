@@ -4,6 +4,8 @@ import os
 from discord import app_commands
 from discord.ext import commands
 from datetime import datetime, timedelta
+from money_utils import get_user_data, save_data
+
 
 MONEY_FILE = 'money_data.json'
 
