@@ -20,6 +20,7 @@ async def on_ready():
 async def main():
     await bot.load_extension("money")
     await bot.load_extension("admin_money")
+    await bot.load_extension("check_balance")
     server_on()
     await bot.start(os.getenv("TOKEN"))
 
