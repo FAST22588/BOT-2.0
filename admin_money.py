@@ -37,7 +37,7 @@ class AdminMoney(commands.Cog):
             f"เพิ่มเงินจำนวน {amount} บาทให้ {member.mention} เรียบร้อยแล้ว!!!", ephemeral=True
         )
 
-    @app_commands.command(name="delete", description="ลบเงินของผู้ใช้ (mention)")
+    @app_commands.command(name="delete", description="ลบเงินของผู้ใช้ (Admin เท่านั้นน!)")
     @app_commands.describe(member="ผู้ใช้ที่ต้องการลบเงิน", amount="จำนวนเงินที่ต้องการลบ")
     async def delete_command(self, interaction: discord.Interaction, member: discord.Member, amount: int):
         if interaction.channel.id != COMMAND_CHANNEL_ID:
