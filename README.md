@@ -1,7 +1,7 @@
 BOT 2.0
 
-main.py   #ตัวรันบอทหลัก
-money.py  #ระบบเช็คเงิน
+main.py #ตัวรันบอทหลัก
+money.py #ระบบเช็คเงิน
 admin_money.py #เพิ่ม/ลบเงิน
 check_balance.py #ตรวจสอบยอดของผู้อื่น
 money_utils.py #ฟังก์ชันฐานข้อมูลกลาง
