@@ -22,15 +22,6 @@ if os.path.exists(MONEY_FILE):
 else:
     money_data = {}
 
-def save_data():
-    with open(MONEY_FILE, 'w') as f:
-        json.dump(money_data, f, indent=4)
-
-def get_user_data(user_id):
-    if str(user_id) not in money_data:
-        money_data[str(user_id)] = {"balance": 0, "last_daily": None}
-    return money_data[str(user_id)]
-
 class Money(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
