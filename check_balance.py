@@ -11,7 +11,7 @@ class CheckBalance(commands.Cog):
         self.bot = bot
 
     # /check @user
-    @app_commands.command(name="check", description="ตรวจสอบยอดเงินของผู้ใช้ (mention)")
+    @app_commands.command(name="check", description="ตรวจสอบยอดเงินของผู้ใช้ (Admin เท่านั้นน!)")
     @app_commands.describe(member="ผู้ใช้ที่ต้องการตรวจสอบยอดเงิน")
     async def check_command(self, interaction: discord.Interaction, member: discord.Member):
         if interaction.channel.id != COMMAND_CHANNEL_ID:
@@ -25,7 +25,7 @@ class CheckBalance(commands.Cog):
         )
 
        # /check_all
-    @app_commands.command(name="check_all", description="แสดงสมาชิกที่มีเงินเยอะที่สุด 10 คน")
+    @app_commands.command(name="check_all", description="จัดอันดับสมาชิกที่มีเงินเยอะที่สุด 10 อันดับเเรกก")
     async def check_all_command(self, interaction: discord.Interaction):
         if interaction.channel.id != CHECK_ALL_CHANNEL_ID:
             return await interaction.response.send_message("Admin เท่านั้น !!!", ephemeral=True)
