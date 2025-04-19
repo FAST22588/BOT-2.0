@@ -5,7 +5,7 @@ from discord import app_commands
 from discord.ext import commands
 
 MONEY_FILE = 'money_data.json'
-COMMAND_CHANNEL_ID = 1362327132663189525  # แก้เป็น ID ห้องที่อนุญาตให้ใช้
+COMMAND_CHANNEL_ID = 1357385446359044208  # แก้เป็น ID ห้องที่อนุญาตให้ใช้
 
 # โหลดหรือสร้างข้อมูล
 if os.path.exists(MONEY_FILE):
