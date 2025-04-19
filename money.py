@@ -14,7 +14,6 @@ COMMAND_CHANNEL_ID = 1362327132663189525  # ห้องที่ 4 ใช้ค
 
 # ห้องที่แสดงผลลัพธ์
 RESULT_CHANNEL_MONEY = 1362684552879014000  # ห้องที่ 1 แสดงยอดเงิน
-RESULT_CHANNEL_DAILY = 1362684614875021423  # ห้องที่ 2 แสดงรับรายวัน
 RESULT_CHANNEL_PAY   = 1362684496767352933  # ห้องที่ 3 แสดงโอนเงิน
 
 # โหลดหรือสร้างไฟล์เก็บเงิน
@@ -38,32 +37,6 @@ class Money(commands.Cog):
 
         await result_channel.send(f'{interaction.user.mention} มีเงิน {user_data["balance"]} บาท')
         await interaction.response.send_message(f'คุณมีเงิน {user_data["balance"]} บาท', ephemeral=True)
-
-    @app_commands.command(name="daily", description="รับเงินรายวัน (100000 เหรียญ)")
-    async def daily_slash(self, interaction: discord.Interaction):
-        if interaction.channel.id != COMMAND_CHANNEL_ID:
-            return await interaction.response.send_message("ไม่สามารถใช้คำสั่งในห้องนี้ได้", ephemeral=True)
-
-        user_id = str(interaction.user.id)
-        user_data = get_user_data(user_id)
-        now = datetime.utcnow()
-        result_channel = self.bot.get_channel(RESULT_CHANNEL_DAILY)
-
-        last_daily_str = user_data.get("last_daily")
-        if last_daily_str:
-            last_daily = datetime.fromisoformat(last_daily_str)
-            if now - last_daily < timedelta(hours=24):
-                remaining = timedelta(hours=24) - (now - last_daily)
-                hours_left = remaining.seconds // 3600
-                await result_channel.send(f'{interaction.user.mention} กรุณารออีก {hours_left} ชั่วโมง')
-                return await interaction.response.send_message("คุณรับเงินรายวันของวันนี้ไปแล้ว", ephemeral=True)
-
-        user_data["balance"] += 100000
-        user_data["last_daily"] = now.isoformat()
-        save_data()
-
-        await result_channel.send(f'{interaction.user.mention} รับเงินรายวัน 100000 เหรียญเรียบร้อย!')
-        await interaction.response.send_message("รับเงินรายวันสำเร็จ", ephemeral=True)
 
     @app_commands.command(name="pay", description="โอนเงินให้ผู้อื่น")
     @app_commands.describe(member="ผู้รับ", amount="จำนวนเงินที่ต้องการโอน")
