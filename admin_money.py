@@ -28,8 +28,8 @@ class AdminMoney(commands.Cog):
         # ส่งแจ้งเตือน
         alert_channel = self.bot.get_channel(ALERT_CHANNEL_US)
         if alert_channel:
-            embed = discord.Embed(title="เพิ่มเงิน",
-                                  description=f"{interaction.user.mention} เพิ่ม **{amount}** ให้ {member.mention}",
+            embed = discord.Embed(title="Admin เพิ่มเงิน",
+                                  description=f"{interaction.user.mention} เพิ่มเงินจำนวน **{amount}** บาทให้ {member.mention}",
                                   color=discord.Color.green())
             await alert_channel.send(embed=embed)
 
@@ -50,13 +50,13 @@ class AdminMoney(commands.Cog):
         # ส่งแจ้งเตือน
         alert_channel = self.bot.get_channel(ALERT_CHANNEL_DELETE)
         if alert_channel:
-            embed = discord.Embed(title="ลบเงิน",
-                                  description=f"{interaction.user.mention} ลบ **{amount}** จาก {member.mention}",
+            embed = discord.Embed(title="Admin ลบเงิน",
+                                  description=f"{interaction.user.mention} ลบเงินจำนวน **{amount}** บาทจาก {member.mention}",
                                   color=discord.Color.red())
             await alert_channel.send(embed=embed)
 
         await interaction.response.send_message(
-            f"ลบเงิน {amount} จาก {member.mention} เรียบร้อยแล้ว", ephemeral=True
+            f"ลบเงินจำนวน {amount} บาทจาก {member.mention} เรียบร้อยแล้ว!!!", ephemeral=True
         )
 
 async def setup(bot):
